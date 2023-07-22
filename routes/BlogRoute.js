@@ -63,7 +63,8 @@ blogRouter.post('/', auth, [
             blogHeader: blogHeader,
             blogBody: blogBody,
             postedDate: postedDate,
-            author: user._id
+            author: user._id,
+            writtenBy: user.username
         });
 
         await blog.save();

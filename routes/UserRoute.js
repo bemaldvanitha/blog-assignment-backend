@@ -6,6 +6,7 @@ const fs = require('fs');
 
 const uploadImage = require('../helpers/uploadImage.js');
 const User = require('../models/User.js');
+const auth = require('../middleware/auth.js');
 const config = require('../config');
 
 const userRouter = express.Router();
@@ -145,6 +146,19 @@ userRouter.post('/sign-in',[
             console.error(err);
             return res.status(500).send('server error');
         }
+});
+
+userRouter.get('/', auth, async (req, res) => {
+    try{
+        const user = await User.findOne({
+            email: req.user.email
+        });
+        return res.status(200).json(user);
+
+    }catch (err){
+        console.error(err);
+        return res.status(500).send('server error');
+    }
 });
 
 module.exports = userRouter;
