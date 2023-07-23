@@ -62,7 +62,7 @@ userRouter.post('/sign-up', uploadImage.single('profilePic'), [
             payload,
             config.jwtSecret,
             {
-                expiresIn: 3600000
+                expiresIn: 3600
             },
             (err,token) => {
                 if(err){
@@ -129,7 +129,7 @@ userRouter.post('/sign-in',[
                 payload,
                 config.jwtSecret,
                 {
-                    expiresIn: 3600000
+                    expiresIn: 3600
                 },
                 (err,token) => {
                     if(err){
